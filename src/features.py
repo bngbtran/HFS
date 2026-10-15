@@ -87,7 +87,7 @@ def neighbor_indices(tree, X_rad: np.ndarray, radius_m: float):
 
 
 def spatial_features(stores: pd.DataFrame, query: pd.DataFrame | None = None,
-                     radii=(100, 300, 500), group_radius=300, group_col="type_group",
+                     radii=(50, 100, 300, 500), group_radii=(50, 300), group_col="type_group",
                      hotspot_centers: np.ndarray | None = None) -> pd.DataFrame:
     """Đặc trưng ngữ cảnh không gian cho từng điểm truy vấn.
 
@@ -113,13 +113,14 @@ def spatial_features(stores: pd.DataFrame, query: pd.DataFrame | None = None,
     for r in radii:
         ind = _drop_self(neighbor_indices(tree, Xq, r))
         out[f"n_total_{r}m"] = [len(i) for i in ind]
-        if r == group_radius:
+        if r in group_radii:
             for g in GROUP_ORDER + [OTHER_GROUP]:
                 cnt = np.array([(groups[i] == g).sum() for i in ind])
                 out[f"n_{GROUP_SLUG[g]}_{r}m"] = cnt
             tot = out[f"n_total_{r}m"].replace(0, np.nan)
             for g in GROUP_ORDER + [OTHER_GROUP]:
                 out[f"share_{GROUP_SLUG[g]}_{r}m"] = (out[f"n_{GROUP_SLUG[g]}_{r}m"] / tot).fillna(0)
+        if r == 300:
             out[f"chain_share_{r}m"] = [chain[i].mean() if len(i) else 0 for i in ind]
             out[f"mean_rating_{r}m"] = [np.nanmean(rating[i]) if np.isfinite(rating[i]).any() else np.nan
                                         for i in ind]
