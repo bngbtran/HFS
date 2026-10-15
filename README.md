@@ -1,6 +1,6 @@
 # HaiChau F&B Spatial Mining
 
-Khai phá dữ liệu không gian các cửa hàng F&B quận Hải Châu (Đà Nẵng): phân cụm điểm nóng, luật kết hợp đồng vị trí và dự đoán mức đánh giá.
+Khai phá dữ liệu không gian các cửa hàng F&B quận Hải Châu (Đà Nẵng): phân cụm điểm nóng, luật kết hợp đồng vị trí và dự đoán loại hình F&B phù hợp với vị trí. Báo cáo: `reports/report.md`.
 
 ## Cài đặt (Windows)
 ```powershell
