@@ -94,7 +94,7 @@ nb.md(r"""
 **Nguồn bổ sung (tùy chọn, chưa chạy):** `src/scrape_gmaps.py` cào trang danh sách của Google Maps theo lưới 500 m, để lấy thêm rating thật (thang 1–5) và loại hình theo Google. Lưu ý:
 - Việc cào giao diện web trái Điều khoản dịch vụ của Google Maps. Dữ liệu chỉ dùng cho học tập, không công khai.
 - Mỗi truy vấn trả tối đa khoảng 120 kết quả; người dùng chưa đăng nhập không xem được số lượt đánh giá.
-- Lệnh chạy: `.venv\Scripts\python -m src.scrape_gmaps --max-queries 10 --headful` (thử), rồi bỏ `--max-queries` để chạy đủ.
+- Lệnh chạy: `python -m src.scrape_gmaps --max-queries 10 --headful` (thử), rồi bỏ `--max-queries` để chạy đủ.
 """)
 nb.code(SETUP + r"""
 raw = cl.load_raw(ROOT / "data" / "raw" / "DaNangData.json")

@@ -281,8 +281,8 @@ Vì vậy top-5 nên được hiểu là **danh sách sàng lọc để khảo s
 ### 9.4. Gợi ý loại hình theo tọa độ
 
 ```powershell
-.venv\Scripts\python -m src.recommend --lat 16.0678 --lon 108.2208
-.venv\Scripts\python -m src.recommend --type "Trà sữa" --top 5
+python -m src.recommend --lat 16.0678 --lon 108.2208
+python -m src.recommend --type "Trà sữa" --top 5
 ```
 
 - Nếu có cửa hàng trong vòng 100 m, công cụ dùng bối cảnh và xác suất OOF của vị trí mặt tiền gần nhất.
@@ -349,8 +349,9 @@ Chép `outputs/maps/*.geojson` vào `public/` của dự án React (`D:\MapSiteD
 ### Phụ lục – Tái lập
 
 ```powershell
-python -m venv .venv
-.venv\Scripts\pip install -r requirements.txt
+conda create -n dam python=3.13 -y
+conda activate dam
+pip install -r requirements.txt
 cd notebooks
 # chạy lần lượt 00 → 06 (hoặc nbconvert --execute)
 ```

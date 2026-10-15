@@ -214,8 +214,8 @@ Hàm `rc.recommend_types(lat, lon)`:
 
 Hàm này cũng gọi được từ dòng lệnh:
 ```
-.venv\Scripts\python -m src.recommend --lat 16.0678 --lon 108.2208
-.venv\Scripts\python -m src.recommend --type "Trà sữa" --top 5
+python -m src.recommend --lat 16.0678 --lon 108.2208
+python -m src.recommend --type "Trà sữa" --top 5
 ```
 """)
 nb.code(r"""

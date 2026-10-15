@@ -11,10 +11,10 @@ Chiến lược:
 - Ô lưới chỉ sinh ở vùng có cửa hàng (dựa trên stores_clean.csv) + các ô kề.
 - Nếu 1 truy vấn chạm trần (>= CAP_HIT kết quả) -> thêm 4 tâm lệch 1/4 ô, vẫn zoom 17.
 
-Chạy:
-    .venv\\Scripts\\python -m src.scrape_gmaps --max-queries 20          # thử
-    .venv\\Scripts\\python -m src.scrape_gmaps                           # chạy đủ (resume được)
-    .venv\\Scripts\\python -m src.scrape_gmaps --merge-only              # gộp cache -> CSV
+Chạy (trong env conda `dam`):
+    python -m src.scrape_gmaps --max-queries 20          # thử
+    python -m src.scrape_gmaps                           # chạy đủ (resume được)
+    python -m src.scrape_gmaps --merge-only              # gộp cache -> CSV
 """
 from __future__ import annotations
 

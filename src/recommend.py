@@ -3,9 +3,9 @@
 1) Cho một vị trí (lat, lon) -> xếp hạng 9 loại hình theo mức phù hợp.
 2) Cho một loại hình -> top ô lưới nên mở quán.
 
-Chạy (sau khi đã chạy notebook 01 → 05):
-    .venv\\Scripts\\python -m src.recommend --lat 16.0678 --lon 108.2208
-    .venv\\Scripts\\python -m src.recommend --type "Trà sữa" --top 5
+Chạy (sau khi đã chạy notebook 01 → 05, trong env conda `dam`):
+    python -m src.recommend --lat 16.0678 --lon 108.2208
+    python -m src.recommend --type "Trà sữa" --top 5
 """
 from __future__ import annotations
 

@@ -45,7 +45,7 @@ class NB:
     def write(self, name):
         nb = nbf.v4.new_notebook()
         nb["cells"] = self.cells
-        nb["metadata"]["kernelspec"] = {"name": "python3", "display_name": "Python 3 (.venv)",
+        nb["metadata"]["kernelspec"] = {"name": "dam", "display_name": "Python 3 (dam)",
                                         "language": "python"}
         path = ROOT / "notebooks" / name
         path.write_text(nbf.writes(nb), encoding="utf-8")

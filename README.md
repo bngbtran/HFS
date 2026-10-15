@@ -4,16 +4,18 @@ Khai phá dữ liệu không gian các cửa hàng F&B quận Hải Châu (Đà 
 
 ## Cài đặt (Windows)
 ```powershell
-python -m venv .venv
-.venv\Scripts\pip install -r requirements.txt
-.venv\Scripts\python -m ipykernel install --user --name python3
+conda create -n dam python=3.13 -y
+conda activate dam
+pip install -r requirements.txt
+python -m ipykernel install --user --name dam --display-name "Python 3 (dam)"
 ```
+Các lệnh bên dưới đều chạy trong env `dam` (đã `conda activate dam`).
 
 ## Chạy
 Mở các notebook trong `notebooks/` và chạy **theo thứ tự** 00 → 06. Có thể chạy không giao diện:
 ```powershell
 cd notebooks
-..\.venv\Scripts\jupyter nbconvert --to notebook --execute --inplace 01_preprocessing.ipynb
+jupyter nbconvert --to notebook --execute --inplace 01_preprocessing.ipynb
 ```
 Notebook được sinh từ `scripts/build_nbXX.py`. Nếu sửa nội dung notebook, nên sửa trong script rồi chạy lại `python scripts/build_nbXX.py`.
 
@@ -47,8 +49,8 @@ reports/             báo cáo tổng hợp
 
 **Công cụ gợi ý:**
 ```powershell
-.venv\Scripts\python -m src.recommend --lat 16.0678 --lon 108.2208      # loại hình nào hợp vị trí này?
-.venv\Scripts\python -m src.recommend --type "Trà sữa" --top 5          # nên mở trà sữa ở đâu?
+python -m src.recommend --lat 16.0678 --lon 108.2208      # loại hình nào hợp vị trí này?
+python -m src.recommend --type "Trà sữa" --top 5          # nên mở trà sữa ở đâu?
 ```
 
 ## Ghi chú phương pháp

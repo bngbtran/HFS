@@ -463,6 +463,6 @@ md(r"""
 """)
 
 nb["cells"] = C
-nb["metadata"]["kernelspec"] = {"name": "python3", "display_name": "Python 3 (.venv)", "language": "python"}
+nb["metadata"]["kernelspec"] = {"name": "dam", "display_name": "Python 3 (dam)", "language": "python"}
 Path("notebooks/01_preprocessing.ipynb").write_text(nbf.writes(nb), encoding="utf-8")
 print("written")

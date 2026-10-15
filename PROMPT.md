@@ -29,7 +29,7 @@ requirements.txt  README.md
 ```
 
 ## Môi trường
-- Windows, Python 3.10+. Tạo venv `.venv`. Thư viện: pandas, numpy, scikit-learn, mlxtend, folium, matplotlib, seaborn, hdbscan (hoặc `sklearn.cluster.HDBSCAN` nếu sklearn ≥1.3), imbalanced-learn, unidecode, jupyter.
+- Windows, Python 3.10+. Dùng conda env `dam`. Thư viện: pandas, numpy, scikit-learn, mlxtend, folium, matplotlib, seaborn, hdbscan (hoặc `sklearn.cluster.HDBSCAN` nếu sklearn ≥1.3), imbalanced-learn, unidecode, jupyter.
 - Kiểm tra Python có sẵn chưa trước khi cài. Ghi đủ phiên bản vào requirements.txt.
 - Đặt `random_state=42` ở mọi chỗ có ngẫu nhiên.
 

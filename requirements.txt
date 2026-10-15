@@ -1,4 +1,4 @@
-# Python 3.13.12 (Windows). Cài: python -m venv .venv && .venv\Scripts\pip install -r requirements.txt
+# Python 3.13 (Windows, conda). Cài: conda create -n dam python=3.13 -y && conda activate dam && pip install -r requirements.txt
 pandas==3.0.6
 numpy==2.5.4
 scipy==1.18.1
