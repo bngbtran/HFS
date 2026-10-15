@@ -375,3 +375,26 @@ class CleaningLog:
 
     def to_frame(self) -> pd.DataFrame:
         return pd.DataFrame(self.rows)
+
+
+# ---------------------------------------------------------------- tên đường
+_HOUSE_RE = re.compile(
+    r"^(?:(?:số|so|lô|lo|kiệt|kiet|k|ki ốt|kiot|kiốt|ngõ|hẻm|tầng \d+,?)\s*)?[\w./\-:]*\d[\w./\-:]*\s+", re.I)
+
+
+def street_of(address) -> str | float:
+    """Tên đường từ address: lấy phần trước dấu phẩy đầu tiên, bỏ số nhà / kiệt / lô."""
+    if not isinstance(address, str):
+        return np.nan
+    first = address.split(",")[0].strip()
+    first = re.split(r"\s+(?:phường|p\.|quận|q\.|thành phố|tp\.?)\s*", first, flags=re.I)[0]
+    first = re.sub(r"^(đối diện|đầu kiệt|ngã (tư|4)|gần)\s+(số\s+)?", "", first, flags=re.I)
+    for _ in range(3):
+        new = _HOUSE_RE.sub("", first)
+        if new == first:
+            break
+        first = new
+    first = re.sub(r"^(Đ\.|đường)\s*", "", first, flags=re.I).strip(" -.")
+    if not first or re.search(r"\d", first.split()[0] if first.split() else ""):
+        return np.nan
+    return first.title() if first.islower() else first

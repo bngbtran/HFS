@@ -6,6 +6,7 @@ from pathlib import Path
 import folium
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -88,3 +89,43 @@ def show_map(path, height=500):
     from IPython.display import IFrame
     rel = Path("..") / Path(path).relative_to(ROOT)
     return IFrame(src=rel.as_posix(), width="100%", height=height)
+
+
+SEQ_CMAP = mpl.colors.LinearSegmentedColormap.from_list("seq_blue", ["#f4f8fd"] + SEQ_BLUE)
+
+
+def heatmap(df: pd.DataFrame, title: str, xlabel: str, ylabel: str, fmt: str = ".0f",
+            ax=None, cbar_label: str = "", cmap=None, annotate=True, vmin=None, vmax=None):
+    """Heatmap bảng (ma trận) với chú thích giá trị từng ô; màu tuần tự 1 hue."""
+    if ax is None:
+        _, ax = plt.subplots(figsize=(1 + 0.75 * df.shape[1], 1 + 0.42 * df.shape[0]))
+    cmap = cmap or SEQ_CMAP
+    im = ax.imshow(df.to_numpy(dtype=float), aspect="auto", cmap=cmap, vmin=vmin, vmax=vmax)
+    ax.set_xticks(range(df.shape[1]), df.columns, rotation=40, ha="right")
+    ax.set_yticks(range(df.shape[0]), df.index)
+    ax.grid(False)
+    if annotate:
+        vals = df.to_numpy(dtype=float)
+        hi = np.nanmax(vals) if vmax is None else vmax
+        lo = np.nanmin(vals) if vmin is None else vmin
+        for i in range(df.shape[0]):
+            for j in range(df.shape[1]):
+                v = vals[i, j]
+                if np.isnan(v):
+                    continue
+                dark = (v - lo) / (hi - lo + 1e-9) > 0.6
+                ax.text(j, i, format(v, fmt), ha="center", va="center", fontsize=7.5,
+                        color="white" if dark else TEXT)
+    cb = plt.colorbar(im, ax=ax, fraction=0.04, pad=0.02)
+    cb.set_label(cbar_label)
+    cb.outline.set_visible(False)
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    return ax
+
+
+def add_heat(m: folium.Map, df: pd.DataFrame, name="Mật độ (HeatMap)", radius=14):
+    from folium.plugins import HeatMap
+    HeatMap(df[["latitude", "longitude"]].to_numpy().tolist(), name=name, radius=radius,
+            blur=12, min_opacity=0.3).add_to(m)
