@@ -14,3 +14,4 @@ jupyter==1.1.1
 ipykernel==7.4.0
 nbconvert==7.17.2
 nbformat==5.11.1
+playwright==1.64.0    # chỉ cần cho src/scrape_gmaps.py (tùy chọn)
